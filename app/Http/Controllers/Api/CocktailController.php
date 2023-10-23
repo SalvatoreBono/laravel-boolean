@@ -11,18 +11,31 @@ class CocktailController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $cocktails = Cocktail::all();
+    public function index() {
+
+        $queryString = request()->query();
+
+        // $query = Cocktail::all();
+
+        // if(array_key_exists("name", $queryString) && $queryString["name"]) {
+        //     $query->where("name", "LIKE", "%{$queryString["name"]}%");
+        // };
+
+        // $cocktails = $query;
+
+        $cocktails = Cocktail::where("name", "LIKE", "%{$queryString["name"]}%")->get();
+
+            dd($cocktails);
 
         return response()->json($cocktails);
+
+
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
