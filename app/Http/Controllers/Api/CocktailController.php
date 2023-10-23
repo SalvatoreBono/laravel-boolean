@@ -15,20 +15,9 @@ class CocktailController extends Controller
 
         $queryString = request()->query();
 
-        // $query = Cocktail::all();
-
-        // if(array_key_exists("name", $queryString) && $queryString["name"]) {
-        //     $query->where("name", "LIKE", "%{$queryString["name"]}%");
-        // };
-
-        // $cocktails = $query;
-
         $cocktails = Cocktail::where("name", "LIKE", "%{$queryString["name"]}%")->get();
 
-            dd($cocktails);
-
         return response()->json($cocktails);
-
 
     }
 
