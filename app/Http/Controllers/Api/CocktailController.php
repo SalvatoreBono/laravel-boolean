@@ -15,7 +15,9 @@ class CocktailController extends Controller
 
         $queryString = request()->query();
 
-        $cocktails = Cocktail::where("name", "LIKE", "%{$queryString["name"]}%")->get();
+        $cocktails = Cocktail::where("name", "LIKE", "%{$queryString["name"]}%")
+        ->where("alcoholic", "LIKE", "%{$queryString["alcoholic"]}%")
+        ->get();
 
         return response()->json($cocktails);
 
